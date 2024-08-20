@@ -53,6 +53,7 @@ app.post("/ekle", authjwt,async (req, res) => {
         res.status(200).json({ message: "kaydedilmedi" });
     }
 });
+
 app.delete("/delete", authjwt,async (req, res) => {
     try {
         const barkod = req.body;
