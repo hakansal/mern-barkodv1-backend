@@ -75,6 +75,7 @@ app.put("/guncelle",authjwt, async (req, res) => {
         res.status(200).json({ message: "güncellendi" });
     } catch (error) {
         res.status(200).json({ message: "güncellenemedi" });
+        console.log(error)
 
     }
 
@@ -93,7 +94,16 @@ app.post("/satis",authjwt, async (req, res) => {
         const urun = await Stuff.findOne({ barkod: barkod });
 
         if (urun) {
-            res.status(200).json({ message: urun });
+ 
+                if (urun.adet > 0) {
+                    urun.adet -= 1;
+                    await urun.save();
+                    res.status(200).json({ message: urun });
+                } else {
+                    
+                    res.status(200).json({ message: "y" });
+                    
+                }
         } else {
             res.status(404).json({ message: "Ürün bulunamadı" });
         }

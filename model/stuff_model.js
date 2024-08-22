@@ -5,12 +5,13 @@ const StuffSchema=new mongoose.Schema({
     barkod:{
         type:String,
         required:true,
+        unique:true
         
         
     },
     isim:{
         type:String,
-        unique:true
+        required:true,
 
     },
     fiyat:{
